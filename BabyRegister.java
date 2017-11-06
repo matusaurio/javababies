@@ -51,7 +51,7 @@ public class BabyRegister {
             Collections.sort(babies, new Comparator<Baby>() {
                 @Override
                 public int compare(Baby o1, Baby o2) {
-                    return o2.getName().compareTo(o1.getName());
+                    return o2.getName().compareToIgnoreCase(o1.getName());
                 }
             });
         } else if (type == "name") {
@@ -71,9 +71,9 @@ public class BabyRegister {
                 System.out.println(baby);
             }
         } else if (type == "gifts") {
-            for (Gift gift : gifts) {
-                System.out.println(gift);
-            }
+//            for (Gift gift : gifts) {
+//                System.out.println(gift);
+//            }
         }
     }
 
@@ -129,16 +129,6 @@ public class BabyRegister {
                         String giftDescription = scanner.next();
                         Date giftDate = new Date();
 
-                        boolean validDateG = false;
-                        while(!validDateG){
-                            try{
-                                giftDate = dateFormat.parse(scanner.next());
-                                validDateG = true;
-                            }catch(ParseException e){
-                                System.out.println("Invalid date, type it again");
-                                validDateG = false;
-                            }
-                        }
                         Gift gift = new Gift(giftName, giftDescription, giftDate);
                         baby.setGift(gift);
                         System.out.println("The gift was added.");
@@ -155,7 +145,6 @@ public class BabyRegister {
                     break;
                 case "3":
                     sort("name");
-                    break;
                     break;
                 case "4":
                     break;
